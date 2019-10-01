@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
+import { withNavigation } from "react-navigation";
 
-const SearchBar = () => {
+const SearchBar = ({ navigation }) => {
   const [query, setQuery] = useState("");
   const handleSubmit = () => {
-    alert("Search for: " + query);
+    navigation.push("Results", { query });
   };
+
   return (
     <View style={styles.container}>
       <EvilIcons name="search" style={styles.icon} />
@@ -43,4 +45,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SearchBar;
+export default withNavigation(SearchBar);
