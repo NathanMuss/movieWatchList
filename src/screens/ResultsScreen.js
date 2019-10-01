@@ -1,29 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, ScrollView, Text } from "react-native";
 import ResultList from "../components/ResultList";
-import omdb from "../api/omdb";
+import useMovieSearch from "../hooks/useMovieSearch";
 
 const ResultsScreen = ({ navigation }) => {
-  const [results, setResults] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
-  // TODO: extract all of this logic into a hook
-  const getResults = async searchTerm => {
-    if (!searchTerm) {
-      setErrorMessage("You need to provide a search term!");
-    } else {
-      try {
-        const response = await omdb.get("", {
-          params: {
-            s: searchTerm
-          }
-        });
-        setResults(response.data.Search);
-      } catch (err) {
-        console.log(err);
-        setErrorMessage("Something went wrong with the OMDB API call");
-      }
-    }
-  };
+  const [getResults, results, errorMessage] = useMovieSearch();
   useEffect(() => {
     getResults(navigation.state.params.query);
   }, []);

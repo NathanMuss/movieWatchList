@@ -1,23 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
-import omdb from "../api/omdb";
+import useMovieDetails from "../hooks/useMovieDetails";
 
 const DetailScreen = ({ navigation }) => {
-  const [errorMessage, setErrorMessage] = useState("");
-  const [details, setDetails] = useState([]);
-  const getDetails = async id => {
-    try {
-      const results = await omdb.get("", {
-        params: {
-          i: id
-        }
-      });
-      setDetails(results.data);
-    } catch (err) {
-      console.log(err);
-      setErrorMessage("Error retrieving details, please try again");
-    }
-  };
+  const [details, getDetails, errorMessage] = useMovieDetails();
   useEffect(() => {
     getDetails(navigation.state.params.id);
   }, []);
@@ -48,7 +34,8 @@ const DetailScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center"
+    alignItems: "center",
+    margin: 5
   },
   poster: {
     width: 300,
