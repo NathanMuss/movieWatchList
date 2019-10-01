@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, ScrollView, Text } from "react-native";
 import ResultList from "../components/ResultList";
 import useMovieSearch from "../hooks/useMovieSearch";

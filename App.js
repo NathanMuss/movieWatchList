@@ -5,6 +5,7 @@ import HomeScreen from "./src/screens/HomeScreen";
 import ResultsScreen from "./src/screens/ResultsScreen";
 import DetailScreen from "./src/screens/DetailScreen";
 import SearchBar from "./src/components/SearchBar";
+import { GlobalProvider } from "./src/context/GlobalContext";
 
 const navigator = createStackNavigator(
   {
@@ -22,4 +23,12 @@ const navigator = createStackNavigator(
 
 const Container = createAppContainer(navigator);
 
-export default Container;
+const App = () => {
+  return (
+    <GlobalProvider>
+      <Container />
+    </GlobalProvider>
+  );
+};
+
+export default App;

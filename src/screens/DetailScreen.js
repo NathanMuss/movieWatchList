@@ -4,6 +4,7 @@ import useMovieDetails from "../hooks/useMovieDetails";
 
 const DetailScreen = ({ navigation }) => {
   const [details, getDetails, errorMessage] = useMovieDetails();
+
   useEffect(() => {
     getDetails(navigation.state.params.id);
   }, []);
