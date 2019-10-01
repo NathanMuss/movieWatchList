@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { StyleSheet, ScrollView, Text } from "react-native";
 import ResultList from "../components/ResultList";
 import useMovieSearch from "../hooks/useMovieSearch";
+import HomeButton from "../components/HomeButton";
 
 const ResultsScreen = ({ navigation }) => {
   const [getResults, results, errorMessage] = useMovieSearch();
@@ -17,8 +18,7 @@ const ResultsScreen = ({ navigation }) => {
 };
 
 ResultsScreen.navigationOptions = {
-  // TODO: Make this a button that goes to home page
-  headerRight: <Text>Home</Text>,
+  headerRight: <HomeButton />,
   headerTitle: "Results"
 };
 

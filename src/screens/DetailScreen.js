@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import useMovieDetails from "../hooks/useMovieDetails";
+import HomeButton from "../components/HomeButton";
 
 const DetailScreen = ({ navigation }) => {
   const [details, getDetails, errorMessage] = useMovieDetails();
@@ -33,6 +34,11 @@ const DetailScreen = ({ navigation }) => {
   );
 };
 
+DetailScreen.navigationOptions = {
+  headerRight: <HomeButton />,
+  headerTitle: "Details"
+};
+
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
@@ -63,9 +69,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   }
 });
-
-DetailScreen.navigationOptions = {
-  headerTitle: "Details"
-};
 
 export default DetailScreen;

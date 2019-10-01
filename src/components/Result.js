@@ -13,8 +13,9 @@ const Result = ({ item, navigation }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
+        style={styles.result}
         onPress={() => {
-          navigation.push("Detail", { id: item.imdbID });
+          navigation.navigate("Detail", { id: item.imdbID });
         }}
       >
         <Image source={{ uri: item.Poster }} style={styles.poster} />
@@ -28,15 +29,19 @@ const Result = ({ item, navigation }) => {
 const styles = StyleSheet.create({
   poster: {
     flex: 1,
-    marginHorizontal: 10,
     width: Math.round(Dimensions.get("window").width - 20),
     height: Math.round(Dimensions.get("window").height / 2),
     resizeMode: "stretch"
   },
   container: {
-    flex: 1,
-    alignItems: "center",
-    marginBottom: 10
+    marginBottom: 10,
+    marginHorizontal: 5,
+    borderColor: "grey",
+    borderWidth: 1,
+    borderRadius: 6
+  },
+  result: {
+    alignItems: "center"
   }
 });
 

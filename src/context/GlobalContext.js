@@ -8,7 +8,7 @@ const GlobalProvider = ({ children }) => {
     savedMovies: []
   };
   useEffect(() => {
-    // TODO: Get saved movies and add to list
+    // TODO: Get saved movies from AsyncStorage and add to list
   }, []);
 
   return (

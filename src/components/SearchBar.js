@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
 import { withNavigation } from "react-navigation";
@@ -6,8 +6,15 @@ import { withNavigation } from "react-navigation";
 const SearchBar = ({ navigation }) => {
   const [query, setQuery] = useState("");
   const handleSubmit = () => {
-    navigation.push("Results", { query });
+    navigation.navigate("Results", { query });
   };
+
+  // Clear query when returning to Home route
+  useEffect(() => {
+    if (navigation.state.routeName === "Home") {
+      setQuery("");
+    }
+  }, [navigation.state.routeName]);
 
   return (
     <View style={styles.container}>
