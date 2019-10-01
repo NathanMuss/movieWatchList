@@ -1,0 +1,83 @@
+import React, { useEffect, useState } from "react";
+import { View, Text, Image, StyleSheet } from "react-native";
+import omdb from "../api/omdb";
+
+const DetailScreen = ({ navigation }) => {
+  const [errorMessage, setErrorMessage] = useState("");
+  const [details, setDetails] = useState([]);
+  const getDetails = async id => {
+    try {
+      const results = await omdb.get("", {
+        params: {
+          i: id
+        }
+      });
+      setDetails(results.data);
+    } catch (err) {
+      console.log(err);
+      setErrorMessage("Error retrieving details, please try again");
+    }
+  };
+  useEffect(() => {
+    getDetails(navigation.state.params.id);
+  }, []);
+
+  return errorMessage ? (
+    <Text>{errorMessage}</Text>
+  ) : (
+    <>
+      <View style={styles.container}>
+        <Image style={styles.poster} source={{ uri: details.Poster }} />
+        <Text style={styles.title}>
+          {details.Title} ({details.Rated})
+        </Text>
+        <Text>{details.Year}</Text>
+        <Text>
+          <Text style={styles.label}>Director(s): </Text>
+          {details.Director}
+        </Text>
+        <Text style={styles.actors}>{details.Actors}</Text>
+        <Text style={styles.plot}>
+          <Text style={styles.label}>Summary: </Text>
+          {details.Plot}
+        </Text>
+      </View>
+    </>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center"
+  },
+  poster: {
+    width: 300,
+    height: 400,
+    marginBottom: 15
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: "bold"
+  },
+  plot: {
+    marginTop: 10,
+    fontSize: 16,
+    marginBottom: 5,
+    paddingHorizontal: 2,
+    marginHorizontal: 2
+  },
+  actors: {
+    fontStyle: "italic",
+    fontSize: 16
+  },
+  label: {
+    fontSize: 16,
+    fontWeight: "bold"
+  }
+});
+
+DetailScreen.navigationOptions = {
+  headerTitle: "Details"
+};
+
+export default DetailScreen;

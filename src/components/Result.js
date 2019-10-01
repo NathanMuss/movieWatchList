@@ -1,12 +1,26 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, Dimensions } from "react-native";
+import {
+  TouchableOpacity,
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Dimensions
+} from "react-native";
+import { withNavigation } from "react-navigation";
 
-const Result = ({ item }) => {
+const Result = ({ item, navigation }) => {
   return (
     <View style={styles.container}>
-      <Image source={{ uri: item.Poster }} style={styles.poster} />
-      <Text>{item.Title}</Text>
-      <Text>{item.Year}</Text>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.push("Detail", { id: item.imdbID });
+        }}
+      >
+        <Image source={{ uri: item.Poster }} style={styles.poster} />
+        <Text>{item.Title}</Text>
+        <Text>{item.Year}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -26,4 +40,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Result;
+export default withNavigation(Result);

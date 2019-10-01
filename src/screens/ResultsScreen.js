@@ -30,7 +30,7 @@ const ResultsScreen = ({ navigation }) => {
   return (
     <ScrollView style={styles.container}>
       {errorMessage ? <Text>{errorMessage}</Text> : null}
-      <ResultList results={results} />
+      <ResultList results={results} navigation={navigation} />
     </ScrollView>
   );
 };
