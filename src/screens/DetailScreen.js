@@ -1,14 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import useMovieDetails from "../hooks/useMovieDetails";
 import HomeButton from "../components/HomeButton";
+import AddButton from "../components/AddButton";
+import RemoveButton from "../components/RemoveButton";
+import { GlobalContext } from "../context/GlobalContext";
 
 const DetailScreen = ({ navigation }) => {
   const [details, getDetails, errorMessage] = useMovieDetails();
-
+  const { savedMovies } = useContext(GlobalContext);
   useEffect(() => {
     getDetails(navigation.state.params.id);
   }, []);
+  const addOrRemoveButton = isAlreadySaved(details.imdbID) ? (
+    <RemoveButton details={details} />
+  ) : (
+    <AddButton details={details} />
+  );
+  function isAlreadySaved(id) {
+    for (let i = 0; i < savedMovies.length; i++) {
+      if (savedMovies[i].imdbID === id) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   return errorMessage ? (
     <Text>{errorMessage}</Text>
@@ -19,6 +35,7 @@ const DetailScreen = ({ navigation }) => {
         <Text style={styles.title}>
           {details.Title} ({details.Rated})
         </Text>
+        {addOrRemoveButton}
         <Text>{details.Year}</Text>
         <Text>
           <Text style={styles.label}>Director(s): </Text>
@@ -35,8 +52,7 @@ const DetailScreen = ({ navigation }) => {
 };
 
 DetailScreen.navigationOptions = {
-  headerRight: <HomeButton />,
-  headerTitle: "Details"
+  headerRight: <HomeButton />
 };
 
 const styles = StyleSheet.create({

@@ -4,7 +4,7 @@ import { createAppContainer } from "react-navigation";
 import HomeScreen from "./src/screens/HomeScreen";
 import ResultsScreen from "./src/screens/ResultsScreen";
 import DetailScreen from "./src/screens/DetailScreen";
-import SearchBar from "./src/components/SearchBar";
+import HeaderTitle from "./src/components/HeaderTitle";
 import { GlobalProvider } from "./src/context/GlobalContext";
 
 const navigator = createStackNavigator(
@@ -16,7 +16,7 @@ const navigator = createStackNavigator(
   {
     initialRouteName: "Home",
     defaultNavigationOptions: {
-      headerTitle: <SearchBar />
+      headerTitle: <HeaderTitle />
     }
   }
 );

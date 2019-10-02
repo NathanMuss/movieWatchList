@@ -18,8 +18,7 @@ const ResultsScreen = ({ navigation }) => {
 };
 
 ResultsScreen.navigationOptions = {
-  headerRight: <HomeButton />,
-  headerTitle: "Results"
+  headerRight: <HomeButton />
 };
 
 const styles = StyleSheet.create({
