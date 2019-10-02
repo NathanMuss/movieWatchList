@@ -14,6 +14,7 @@ const RemoveButton = ({ details }) => {
   return (
     <Button
       title="Remove from Watchlist"
+      color="red"
       onPress={() => removeFromWatchlist(details)}
     />
   );
