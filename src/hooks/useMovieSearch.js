@@ -17,7 +17,7 @@ const useMovieSearch = () => {
         });
         setResults(response.data.Search);
       } catch (err) {
-        console.log(err);
+        console.error(err);
         setErrorMessage("Something went wrong with the OMDB API call");
       }
     }

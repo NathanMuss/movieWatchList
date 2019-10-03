@@ -13,7 +13,7 @@ const useMovieDetails = () => {
       });
       setDetails(results.data);
     } catch (err) {
-      console.log(err);
+      console.error(err);
       setErrorMessage("Error retrieving details, please try again");
     }
   };
