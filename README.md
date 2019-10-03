@@ -5,8 +5,6 @@ Used only functional components for this project as I wanted to get more familia
 
 ## Installation
 
-You can (probably/usually?) test out the app at https://snack.expo.io/@nathanmuss/b36885 - I've been having intermittent issues with this setup, sometimes there is a very long queue, sometimes things just don't load quite properly there. If you know of another way to display mobile apps in browser, please feel free to shoot me a message.
-
 This assumes you have local simulators/emulators set up for iOS and Android (or have expo installed on your physical device).
 
 To run using expo clone this repo, and run the following from the cloned directory.
@@ -17,6 +15,8 @@ expo start
 ```
 
 Press `i` in the terminal window to start iOS simulator or `a` for an Android emulator, or use the QR code to run on your own device.
+
+You can (probably/usually?) test out the app at https://snack.expo.io/@nathanmuss/b36885 - I've been having intermittent issues with this setup, sometimes there is a very long queue, sometimes things just don't load quite properly there. If you know of another way to display mobile apps in browser, please feel free to shoot me a message.
 
 ## Usage
 
