@@ -17,7 +17,7 @@ const useMovieDetails = () => {
       setErrorMessage("Error retrieving details, please try again");
     }
   };
-  return [details, getDetails, errorMessage];
+  return [details, getDetails, errorMessage, setDetails];
 };
 
 export default useMovieDetails;

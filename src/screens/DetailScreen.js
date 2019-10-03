@@ -7,10 +7,19 @@ import RemoveButton from "../components/RemoveButton";
 import { GlobalContext } from "../context/GlobalContext";
 
 const DetailScreen = ({ navigation }) => {
-  const [details, getDetails, errorMessage] = useMovieDetails();
+  const [details, getDetails, errorMessage, setDetails] = useMovieDetails();
   const { savedMovies } = useContext(GlobalContext);
   useEffect(() => {
-    getDetails(navigation.state.params.id);
+    let haveDetails = false;
+    for (movie of savedMovies) {
+      if (movie.imdbID === navigation.state.params.id) {
+        setDetails(movie);
+        haveDetails = true;
+      }
+    }
+    if (!haveDetails) {
+      getDetails(navigation.state.params.id);
+    }
   }, []);
   const addOrRemoveButton = isAlreadySaved(details.imdbID) ? (
     <RemoveButton details={details} />
