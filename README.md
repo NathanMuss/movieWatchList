@@ -5,7 +5,7 @@ Used only functional components for this project as I wanted to get more familia
 
 ## Installation
 
-This assumes you have local simulators/emulators set up for iOS and Android.
+This assumes you have local simulators/emulators set up for iOS and Android (or have expo installed on your physical device).
 
 To run using expo clone this repo, and run the following from the cloned directory.
 
